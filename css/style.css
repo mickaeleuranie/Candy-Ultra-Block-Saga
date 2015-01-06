@@ -1,0 +1,523 @@
+body {overflow: hidden;}
+
+@font-face {
+    font-family: 'Atari Font';
+    src: url('fonts/atari_full-webfont.eot');
+    src: url('fonts/atari_full-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/atari_full-webfont.woff') format('woff'),
+         url('fonts/atari_full-webfont.ttf') format('truetype'),
+         url('fonts/atari_full-webfont.svg#Atari Font') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+body{background-color:#000000;}
+/*console definition*/
+#debug {position:absolute;top:0px;left:0px;width:100%;z-index:50;margin:0;}
+#debug .text{position:relative;font-size:11px;font-family:sans-serif;color:#CCC;margin:0;overflow:hidden;}
+#debug .text p{padding: 5px;}
+#debug .back{position:absolute;top:0px;background:#000;filter:alpha(opacity=25);-moz-opacity:0.25;opacity: 0.25;width:100%;height:100%;}
+
+/* Global */
+.hide { display: none; }
+/*canvas definition*/
+canvas {position:absolute;z-index:1;margin:0;}
+/*menus definition*/
+#menu_container {
+	background: none;
+	color: #FEFF00;
+	font-size: 1.3em;
+	margin:0;
+	position:absolute;
+	text-align: center;
+	text-transform: uppercase;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	z-index:30;
+}
+
+	.menu_screen {
+		/*background-color: rgba(0,0,0,.8);*/
+		height: 100%;
+		position: absolute;
+		width: 100%;
+	}
+
+		.title {
+			cursor: default;
+			padding-top: 14%;
+			padding-bottom: 9%;
+			font-size: 1.6em;
+		}
+
+		.btn {
+			-webkit-text-stroke-width: 1px;
+   			-webkit-text-stroke-color: black;
+			cursor: pointer;
+			font-family: 'Atari Font';
+			font-size: 24px;
+			margin: auto;
+			margin-bottom: 2%;
+			width: 20%;
+		}
+
+		.btn.selected {
+			background: url('../assets/00_FINAL/buttons/arrow-menu.png') no-repeat transparent;
+		}
+
+#player_selection {
+	background: url('../assets/00_FINAL/select_runner/character-select-background.jpg') no-repeat transparent center;
+	margin: 5px;
+	position: absolute;
+	z-index: 40;
+}
+
+#player_selection.hide {
+	z-index: 0;
+}
+
+	#player_selection table {
+		width: 100%;
+	}
+
+		#player_selection table td {
+			padding-top: 25px;
+			vertical-align: middle;
+			width: 50%;
+		}
+
+		#player_selection table td.disabled {
+			background-color: transparent;
+		}
+
+		#player_selection table td .select-perso {
+			height: 275px;
+			margin: auto;
+			width: 620px;
+		}
+
+		#player_selection table td.step-0 .select-perso {
+			background: url('../assets/00_FINAL/select_runner/select.png') no-repeat transparent center;
+		}
+
+		#player_selection table td.step-0 .select-perso.selected-left {
+			background: url('../assets/00_FINAL/select_runner/select-left-on.png') no-repeat transparent center;
+		}
+
+		#player_selection table td.step-0 .select-perso.selected-right {
+			background: url('../assets/00_FINAL/select_runner/select-right-on.png') no-repeat transparent center;
+		}
+
+		#player_selection table td.step-1 .select-perso {
+			background: none;
+		}
+
+			#player_selection table td .select-perso .artwork {
+				height: 275px;
+				margin: auto;
+				width: 400px;
+			}
+
+			#player_selection table td .select-perso .artwork.unavailable {
+				opacity: 0.5;
+			}
+
+			#player_selection table td .select-perso .artwork.artwork-runner-0 {
+				background: url('../assets/00_FINAL/player/runners/viking.png') no-repeat transparent center;
+			}
+
+			#player_selection table td .select-perso .artwork.artwork-runner-1 {
+				background: url('../assets/00_FINAL/player/runners/facerock.png') no-repeat transparent center;
+			}
+
+			#player_selection table td .select-perso .artwork.artwork-runner-2 {
+				background: url('../assets/00_FINAL/player/runners/rockfly.png') no-repeat transparent center;
+			}
+
+			#player_selection table td .select-perso .artwork.artwork-runner-3 {
+				background: url('../assets/00_FINAL/player/runners/dragon.png') no-repeat transparent center;
+			}
+
+			#player_selection table td .select-perso .artwork.artwork-runner-4 {
+				background: url('../assets/00_FINAL/player/runners/jelly.png') no-repeat transparent center;
+			}
+
+		#player_selection table td .select-name {
+			/*background-color: rgba(0,0,255,0.6);*/
+			background: url('icons/xboxButtonA.png') no-repeat transparent;
+			margin: auto;
+			height: 80px;
+			text-align: center;
+			width: 400px;
+		}
+
+		#player_selection table td.step-0 .select-name {
+			background-position: center;
+			color: transparent;
+		}
+
+		#player_selection table td.step-1 .select-name {
+			background-position: 353px center;
+			color: #FFFFFF;
+			-webkit-text-stroke-width: 1px;
+   			-webkit-text-stroke-color: black;
+		}
+
+
+		#player_selection table td.step-2 .select-name {
+			display: none;
+		}
+
+			#player_selection table td .select-name .player-id {
+				display: inline-block;
+				font-family: 'Atari Font';
+				font-size: 18px;
+				line-height: 80px;
+				margin: 0;
+				margin-right: 10px;
+			}
+
+			#player_selection table td .select-name .letter {
+				display: inline-block;
+    			font-family: 'Atari Font';
+				font-size: 20px;
+				margin: 0;
+				margin-right: 10px;
+				line-height: 80px;
+				padding-left: 5px;
+				text-align: center;
+			}
+
+			#player_selection table td.step-1 .select-name .letter.active-letter {
+				color: #FEFF00;
+			}
+
+			#player_selection table td .select-name .letter.last {
+				margin-right: 0;
+			}
+
+		#player_selection table td .ready {
+			display: none;
+		}
+
+		#player_selection table td.step-2 .ready {
+			display: block;
+			font-family: 'Atari Font';
+			font-size: 20px;
+			line-height: 80px;
+			margin: 0;
+			padding-left: 25px;
+			text-align: center;
+		}
+
+#player_rank {
+	background: url('../assets/00_FINAL/select_runner/character-select-background.jpg') no-repeat transparent center;
+	margin: 5px;
+	position: absolute;
+	z-index: 40;
+}
+
+#player_rank.hide {
+	z-index: 0;
+}
+
+	#player_rank table {
+		width: 100%;
+	}
+
+		#player_rank table td {
+			padding-top: 25px;
+			vertical-align: middle;
+			width: 50%;
+		}
+
+		#player_rank table td.disabled {
+			background-color: transparent;
+		}
+
+		#player_rank table td .rank-perso {
+			height: 275px;
+			margin: auto;
+			width: 620px;
+		}
+
+		#player_rank table td.step-1 .rank-perso {
+			background: none;
+		}
+
+			#player_rank table td .rank-perso .artwork {
+				height: 275px;
+				margin: auto;
+				width: 400px;
+			}
+
+			#player_rank table td .rank-perso .artwork.unavailable {
+				opacity: 0.5;
+			}
+
+			#player_rank table td .rank-perso .artwork.artwork-runner-0 {
+				background: url('../assets/00_FINAL/player/runners/viking.png') no-repeat transparent center;
+			}
+
+			#player_rank table td .rank-perso .artwork.artwork-runner-1 {
+				background: url('../assets/00_FINAL/player/runners/facerock.png') no-repeat transparent center;
+			}
+
+			#player_rank table td .rank-perso .artwork.artwork-runner-2 {
+				background: url('../assets/00_FINAL/player/runners/rockfly.png') no-repeat transparent center;
+			}
+
+			#player_rank table td .rank-perso .artwork.artwork-runner-3 {
+				background: url('../assets/00_FINAL/player/runners/dragon.png') no-repeat transparent center;
+			}
+
+			#player_rank table td .rank-perso .artwork.artwork-runner-4 {
+				background: url('../assets/00_FINAL/player/runners/jelly.png') no-repeat transparent center;
+			}
+
+		#player_rank table td .rank-name {
+			margin: auto;
+			height: 80px;
+			text-align: center;
+			width: 400px;
+		}
+
+		#player_rank table td.step-0 .rank-name {
+			background-position: center;
+			color: transparent;
+		}
+
+		#player_rank table td.step-1 .rank-name {
+			background-position: 353px center;
+			color: #FFFFFF;
+			-webkit-text-stroke-width: 1px;
+   			-webkit-text-stroke-color: black;
+		}
+
+
+		#player_rank table td.step-2 .rank-name {
+			display: none;
+		}
+
+			#player_rank table td .rank-name .rank-id {
+				display: inline-block;
+				font-family: 'Atari Font';
+				font-size: 18px;
+				line-height: 80px;
+				margin: 0;
+				margin-right: 10px;
+			}
+
+			#player_rank table td .rank-name .letter {
+				display: inline-block;
+    			font-family: 'Atari Font';
+				font-size: 20px;
+				margin: 0;
+				margin-right: 10px;
+				line-height: 80px;
+				padding-left: 5px;
+				text-align: center;
+			}
+
+			#player_rank table td.step-1 .rank-name .letter.active-letter {
+				color: #FEFF00;
+			}
+
+			#player_rank table td .rank-name .letter.last {
+				margin-right: 0;
+			}
+
+		#player_rank table td .ready {
+			display: none;
+		}
+
+		#player_rank table td.step-2 .ready {
+			display: block;
+			font-family: 'Atari Font';
+			font-size: 20px;
+			line-height: 80px;
+			margin: 0;
+			padding-left: 25px;
+			text-align: center;
+		}
+
+/* Cartouche titre */
+.cartouche-title {
+	background: url('../assets/00_FINAL/select_runner/select-title.jpg') no-repeat;
+	margin: 0;
+	height: 96px;
+	left: 584px;
+	position: absolute;
+	top: 0;
+	width: 448px;
+}
+.cartouche-title-rank {
+	background: url('../assets/00_FINAL/buttons/rankings.jpg') no-repeat;
+}
+
+.hide .cartouche-title {
+	display: none;
+}
+
+
+/* Ligne des bordures */
+
+#players-2-player-1,
+#players-2-player-2 {
+	
+}
+
+#players-3-player-1,
+#players-4-player-1 {
+	background: url('../assets/00_FINAL/select_runner/ligne-haut-gauche.png') no-repeat;
+}
+#players-3-player-2,
+#players-4-player-2 {
+	background: url('../assets/00_FINAL/select_runner/ligne-haut-droite.png') no-repeat;
+}
+#players-3-player-3,
+#players-4-player-3 {
+	background: url('../assets/00_FINAL/select_runner/ligne-bas-gauche.png') no-repeat;
+}
+#players-3 td.disabled,
+#players-4-player-4 {
+	background: url('../assets/00_FINAL/select_runner/ligne-bas-droite.png') no-repeat;
+}
+
+
+/* Title Screen */
+#title-screen-anim {
+	background: url('../assets/00_FINAL/titlescreen/bg.jpg') no-repeat transparent;
+	height: 760px;
+	position: absolute;
+	overflow: hidden;
+	width: 100%;
+	z-index: 20;
+}
+
+	#title-screen-anim #viking {
+		background: url('../assets/00_FINAL/titlescreen/viking.png') no-repeat;
+		height: 651px;
+		left: -1000px;
+		position: absolute;
+		top: 158px;
+		width: 981px;
+		z-index: 120;
+
+		/* Start at .5s - end at 1s */
+		animation: viking-animate .5s linear .5s;
+		animation-fill-mode: forwards;
+		-webkit-animation: viking-animate .5s linear .5s;
+		-webkit-animation-fill-mode: forwards;
+	}
+
+		@keyframes viking-animate {
+			100% {left: -380px;}
+		}
+
+		@-webkit-keyframes viking-animate {
+			100% {left: -380px;}
+		}
+
+	#title-screen-anim #dragon {
+		background: url('../assets/00_FINAL/titlescreen/dragon.png') no-repeat;
+		height: 369px;
+		left: -1000px;
+		position: absolute;
+		top: 105px;
+		width: 562px;
+		z-index: 110;
+
+		/* Start at 1s - end at 1.5s */
+		animation: dragon-animate .5s linear 1s;
+		animation-fill-mode: forwards;
+		-webkit-animation: dragon-animate .5s linear 1s;
+		-webkit-animation-fill-mode: forwards;
+	}
+
+		@keyframes dragon-animate {
+			100% {left: -65px;}
+		}
+
+		@-webkit-keyframes dragon-animate {
+			100% {left: -65px;}
+		}
+
+	#title-screen-anim #facerock {
+		background: url('../assets/00_FINAL/titlescreen/facerock.png') no-repeat;
+		height: 499px;
+		position: absolute;
+		right: -1000px;
+		top: 371px;
+		width: 493px;
+		z-index: 130;
+
+		/* Start at .5s - end at 1s */
+		animation: facerock-animate .5s linear .5s;
+		animation-fill-mode: forwards;
+		-webkit-animation: facerock-animate .5s linear .5s;
+		-webkit-animation-fill-mode: forwards;
+	}
+
+		@keyframes facerock-animate {
+			100% {right: -240px;}
+		}
+
+		@-webkit-keyframes facerock-animate {
+			100% {right: -240px;}
+		}
+
+	#title-screen-anim #jelly {
+		background: url('../assets/00_FINAL/titlescreen/jelly.png') no-repeat;
+		height: 382px;
+		position: absolute;
+		right: -1000px;
+		top: 288px;
+		width: 411px;
+		z-index: 120;
+
+		/* Start at 1s - end at 1.5s */
+		animation: jelly-animate .5s linear 1s;
+		animation-fill-mode: forwards;
+		-webkit-animation: jelly-animate .5s linear 1s;
+		-webkit-animation-fill-mode: forwards;
+	}
+
+		@keyframes jelly-animate {
+			100% {right: 129px;}
+		}
+
+		@-webkit-keyframes jelly-animate {
+			100% {right: 129px;}
+		}
+
+	#title-screen-anim #rockfly {
+		background: url('../assets/00_FINAL/titlescreen/rockfly.png') no-repeat;
+		height: 380px;
+		position: absolute;
+		right: 7px;
+		top: 2000px;
+		width: 233px;
+		z-index: 110;
+
+		/* Start at 1.5s - end at 2s */
+		animation: rockfly-animate .5s linear 1.5s;
+		animation-fill-mode: forwards;
+		-webkit-animation: rockfly-animate .5s linear 1.5s;
+		-webkit-animation-fill-mode: forwards;
+	}
+
+		@keyframes rockfly-animate {
+			100% {top: 67px;}
+		}
+
+		@-webkit-keyframes rockfly-animate {
+			100% {top: 67px;}
+		}

@@ -1,0 +1,5 @@
+/**
+ * Corridor configuration
+ **/
+define({
+});

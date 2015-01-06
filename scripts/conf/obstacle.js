@@ -1,0 +1,5 @@
+/**
+ * Obstacle configuration
+ **/
+define({
+});
